@@ -15,6 +15,7 @@ import {
   TextField
 } from "ui/text-field";
 import * as SocialShare from "nativescript-social-share";
+import * as ShowAlert from "nativescript-show-alert";
 import {
   TNSFontIconService
 } from 'nativescript-ng2-fonticon';
@@ -79,6 +80,11 @@ export class ListComponent implements OnInit {
         }
       )
   }
+
+showAlert() {
+  var showy: ShowAlert.ShowAlert = new ShowAlert.ShowAlert();
+  showy.showAlert();
+}
 
   delete(grocery: Grocery) {
     this.groceryListService.delete(grocery.id)
