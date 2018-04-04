@@ -94,17 +94,17 @@ Temporary Items
 .apdisk
 
 ### NativeScript ###
-/platforms
-/hooks
-/node_modules
-/lib
-/debugger
-/dist
+platforms/
+hooks/
+node_modules/
+lib/
+debugger/
+dist/
 
-/app/**/*.map
+app/**/*.map
 # shouldn't ignore this for vanilla nativescript 
 # This project uses typescript, so the generated js files shouldn't be commited
-/app/**/*.js
+*.js
 
 .DS_Store
 **/*.log
