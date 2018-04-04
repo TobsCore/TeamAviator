@@ -118,7 +118,8 @@ Temporary Items
 
 /app/**/*.map
 # shouldn't ignore this for vanilla nativescript 
-# /app/**/*.js
+# This project uses typescript, so the generated js files shouldn't be commited
+/app/**/*.js
 
 .DS_Store
 **/*.log
