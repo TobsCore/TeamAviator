@@ -1,0 +1,12 @@
+StackLayout {
+    height: 335;
+}
+
+Button {
+    height: 40;
+}
+
+.submit-button {
+    margin-top: 20;
+    margin-bottom: 10;
+}

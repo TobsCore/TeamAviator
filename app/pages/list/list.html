@@ -1,0 +1,28 @@
+<ActionBar title="Groceries">
+  <ActionItem text="Share" (tap)="share()" android.systemIcon="'mdi-share | fonticon" ios.systemIcon="9" ios.position="right"
+    android.position="actionBar"></ActionItem>
+  <ActionItem text="clear all" (tap)="clear()" ios.position="right" android.position="popup"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, *">
+
+  <GridLayout row="0" columns="*, auto" class="add-bar">
+    <TextField #groceryTextField [(ngModel)]="grocery" hint="Enter a grocery item" (returnPress)="add()" col="0" style.placeholderColor="darkgray"></TextField>
+    <Label col="1" [text]="'mdi-add' | fonticon" class="mdi" horizontalAlignment="center" verticalAlignment="center" (tap)="add()"></Label>
+  </GridLayout>
+
+  <ListView [items]="groceryList" row="1" class="small-spacing" [class.visible]="listLoaded">
+    <ng-template let-item="item">
+      <GridLayout columns="*, auto">
+        <Label col="0" [text]="item.name" class="medium-spacing"></Label>
+        <StackLayout col="1" orientation="horizontal">
+            <Label [text]="'mdi-edit' | fonticon" class="mdi" horizontalAlignment="center" verticalAlignment="center" (tap)="edit(item)"
+            marginRight="20">
+          </Label>
+          <Label [text]="'mdi-delete' | fonticon" class="mdi" horizontalAlignment="center" verticalAlignment="center" (tap)="delete(item)"></Label>
+        </StackLayout>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center"
+    verticalAlignment="center"></ActivityIndicator>
+</GridLayout>
