@@ -19,9 +19,14 @@ import { UserService } from "./user/user.service";
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.scss"]
 })
+
+
+
 export class LoginComponent implements OnInit {
 
     user: User;
+    appSettings = require("application-settings");
+    Observable = require("tns-core-modules/data/observable").Observable;
 
     @ViewChild("container") container: ElementRef;
     @ViewChild("email") email: ElementRef;
@@ -34,16 +39,24 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        const userPassword = this.appSettings.getString(this.user.email, "none")
         this.page.actionBarHidden = true;
         this.page.backgroundImage = "res://bg_uilab";
+        if (userPassword == "none") {
+        } else {
+            const vm = this.Observable;
+            vm.set("isLoading", true);
+            this.page.bindingContext = vm;
+            this.router.navigate(["/tabs"]);
+        }
     }
 
     submit() {
         if (!this.user.isValidEmail()) {
             alert("Enter a valid email address.");
-
             return;
         }
+        this.appSettings.setString(this.user.email, this.user.password)
         this.login();
     }
 
@@ -52,6 +65,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 () => this.router.navigate(["/tabs"]),
                 (error) => alert("Unfortunately we could not find your account.")
-            );
+            ); 
     }
 }
